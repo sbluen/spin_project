@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+spin -f "[] one_leader"
+spin -f "<> leader_exists"
+spin -f "<> leader_highest"
+spin -f "[] message_performance"
+spin -f "[] iter_limit"
+
+spin -a spec.spin
+cc -Wformat-overflow=0 -DVECTORSZ=2048 -o run pan.c
+./run -a
